@@ -60,6 +60,10 @@ require("lazy").setup({
     opts = {},
   },
   {
+    "stevearc/oil.nvim",
+    opts = {},
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = "markdown",
     opts = {},
