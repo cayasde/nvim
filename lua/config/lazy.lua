@@ -61,7 +61,16 @@ require("lazy").setup({
   },
   {
     "stevearc/oil.nvim",
-    opts = {},
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      columns = { "icon" },
+    },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
