@@ -1,3 +1,15 @@
+vim.opt.termguicolors = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.cursorline = true
+vim.opt.scrolloff = 8
+vim.opt.updatetime = 250
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.whichwrap:append("<,>,[,]")
@@ -25,6 +37,7 @@ map("x", "<C-S-Down>", "gj", opts)
 map("x", "<BS>", '"_d', opts)
 map({ "n", "x" }, "<C-BS>", 'vb"_d', opts)
 map({ "n", "x" }, "<C-h>", 'vb"_d', opts)
+map({ "n", "x" }, "<C-x>", '"+d', opts)
 map({ "n", "x" }, "<C-c>", '"+y', opts)
 map("n", "<C-v>", '"+p', opts)
 map("x", "<C-v>", '"+p', opts)
@@ -32,6 +45,10 @@ map("n", "<C-z>", "u", opts)
 map("x", "<C-z>", "u", opts)
 map("n", "<C-y>", "<C-r>", opts)
 map("x", "<C-y>", "<C-r>", opts)
+map("n", "<C-s>", "<cmd>w<CR>", opts)
+map("i", "<C-s>", "<C-o><cmd>w<CR>", opts)
+map("x", "<C-s>", "<Esc><cmd>w<CR>", opts)
+
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
 

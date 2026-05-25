@@ -33,7 +33,10 @@ require("lazy").setup({
     "saghen/blink.cmp",
     version = "1.*",
     opts = {
-      keymap = { preset = "enter" },
+      keymap = {
+        preset = "enter",
+        ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
+      },
       appearance = {
         nerd_font_variant = "mono",
       },
@@ -47,6 +50,19 @@ require("lazy").setup({
         implementation = "prefer_rust_with_warning",
       },
     },
+  },
+  {
+    "windwp/nvim-autopairs",
+    opts = {},
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {},
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = "markdown",
+    opts = {},
   },
   {
     "neovim/nvim-lspconfig",
