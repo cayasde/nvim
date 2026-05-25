@@ -51,6 +51,7 @@ map("i", "<C-s>", "<C-o><cmd>w<CR>", opts)
 map("x", "<C-s>", "<Esc><cmd>w<CR>", opts)
 
 map("n", "<leader>e", "<cmd>Oil .<CR>", opts)
+map("n", "<leader>m", "<cmd>Dashboard<CR>", opts)
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)

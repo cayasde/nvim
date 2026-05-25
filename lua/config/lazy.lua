@@ -101,6 +101,50 @@ require("lazy").setup({
     },
   },
   {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = function()
+      local dashboard = require("config.dashboard")
+
+      return {
+        theme = "hyper",
+        config = {
+          header = dashboard.build(),
+          shortcut = {
+            {
+              icon = "  ",
+              desc = "cayasde",
+              key = "h",
+              action = function()
+                vim.ui.open("https://github.com/cayasde")
+              end,
+            },
+            { icon = "  ", desc = "Files", key = "f", action = "Telescope find_files" },
+            { icon = "  ", desc = "Grep", key = "g", action = "Telescope live_grep" },
+            { icon = "  ", desc = "Oil", key = "e", action = "Oil ." },
+            { icon = "  ", desc = "LazyGit", key = "l", action = "LazyGit" },
+            {
+              icon = "󰗼  ",
+              desc = "Quit",
+              key = "q",
+              action = "qa",
+            },
+          },
+          project = { enable = true, limit = 8 },
+          mru = { enable = true, limit = 10 },
+          footer = {},
+        },
+      }
+    end,
+    config = function(_, opts)
+      require("dashboard").setup(opts)
+      require("config.dashboard").setup()
+    end,
+  },
+  {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = "markdown",
     opts = {},
