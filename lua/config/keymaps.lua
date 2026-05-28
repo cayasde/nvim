@@ -47,11 +47,12 @@ map("n", "<C-y>", "<C-r>", opts)
 map("x", "<C-y>", "<C-r>", opts)
 map("n", "<C-q>", "<cmd>bdelete<CR>", opts)
 map("n", "<C-s>", "<cmd>w<CR>", opts)
+map("n", "<C-a>", "ggVG", opts)
 map("i", "<C-s>", "<C-o><cmd>w<CR>", opts)
+map("i", "<C-a>", "<Esc>ggVG", opts)
 map("x", "<C-s>", "<Esc><cmd>w<CR>", opts)
 
 map("n", "<leader>e", "<cmd>Oil .<CR>", opts)
-map("n", "<leader>m", "<cmd>Dashboard<CR>", opts)
 map("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
@@ -80,5 +81,17 @@ vim.api.nvim_create_autocmd("FileType", {
     local lazygit_opts = { noremap = true, silent = true, buffer = args.buf }
     map("n", "<Esc>", "<cmd>close<CR>", lazygit_opts)
     map("t", "<Esc>", [[<C-\><C-n><cmd>close<CR>]], lazygit_opts)
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() ~= 0 or vim.bo.modified or vim.api.nvim_buf_get_name(0) ~= "" then
+      return
+    end
+
+    vim.schedule(function()
+      vim.cmd("Telescope find_files")
+    end)
   end,
 })

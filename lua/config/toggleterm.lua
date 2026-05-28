@@ -212,7 +212,9 @@ local function close_last_terminal()
   end
 end
 
-map({ "n", "t" }, "<leader>t", toggle_last_terminal, opts)
+for _, lhs in ipairs({ "<C-\\>", "<C-`>", "<Nul>", "<C-Space>", "<C-@>" }) do
+  map({ "n", "t" }, lhs, toggle_last_terminal, opts)
+end
 map({ "n", "t" }, "<leader>tn", new_terminal, opts)
 map({ "n", "t" }, "<leader>ts", select_terminal, opts)
 map({ "n", "t" }, "<leader>tk", close_last_terminal, opts)
