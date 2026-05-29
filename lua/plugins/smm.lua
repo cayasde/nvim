@@ -1,15 +1,3 @@
-local function env_bool(name, default)
-  local value = vim.env[name]
-
-  if value == nil or value == "" then
-    return default
-  end
-
-  value = value:lower()
-
-  return value == "1" or value == "true" or value == "yes" or value == "on"
-end
-
 local function env_number(name, default)
   local value = tonumber(vim.env[name])
 
@@ -37,7 +25,7 @@ return {
     end
 
     require("smm").setup({
-      premium = env_bool("SPOTIFY_PREMIUM", true),
+      premium = true,
       icons = true,
       playback = {
         timer_update_interval = 250,

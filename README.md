@@ -33,6 +33,9 @@ npm ci
 
 This config includes [`iamt4nk/smm.nvim`](https://github.com/iamt4nk/smm.nvim) and reads its credentials from environment variables instead of hardcoding them.
 
+> [!WARNING]
+> In practice, this plugin is only usable with Spotify Premium. The Spotify account that owns the developer app must have an active Premium subscription, or the Web API playback endpoints will return `403`.
+
 1. Create a Spotify app at <https://developer.spotify.com/dashboard>.
 2. Add yourself in the app's `User Management`.
 3. Add a redirect URI such as `http://127.0.0.1:8888`.
@@ -43,7 +46,6 @@ This config includes [`iamt4nk/smm.nvim`](https://github.com/iamt4nk/smm.nvim) a
 SPOTIFY_CLIENT_ID=your-client-id
 SPOTIFY_CALLBACK_URL=http://127.0.0.1
 SPOTIFY_CALLBACK_PORT=8888
-SPOTIFY_PREMIUM=true
 ```
 
 This config loads `.env` automatically during startup. Then run `:Spotify` or use `<leader>ms` to start the OAuth flow and open the playback window.
