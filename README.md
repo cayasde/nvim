@@ -1,8 +1,11 @@
 # nvim
 
-![Size](https://img.shields.io/github/repo-size/cayasde/nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41)
+[![CI](https://img.shields.io/github/actions/workflow/status/cayasde/nvim/ci.yml?branch=main&label=CI&style=for-the-badge)](https://github.com/cayasde/nvim/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/cayasde/nvim?label=LICENSE&style=for-the-badge)](./LICENSE)
+[![Size](https://img.shields.io/github/repo-size/cayasde/nvim?label=SIZE&logo=codesandbox&style=for-the-badge)](https://github.com/cayasde/nvim)
+[![Last Commit](https://img.shields.io/github/last-commit/cayasde/nvim?label=LAST%20COMMIT&style=for-the-badge)](https://github.com/cayasde/nvim/commits/main)
 
-Personal Neovim configuration, organized by responsibility and kept intentionally small.
+Lua-first Neovim configuration with fast startup, plugin-per-file organization, and a small toolchain built around `mise`, `stylua`, and CI validation.
 
 ## Tooling
 
