@@ -5,6 +5,7 @@ local M = {}
 function M.setup()
   keymap.map("n", "<leader>e", "<cmd>Oil .<CR>")
   keymap.map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>")
+  keymap.map("n", "<leader>ms", "<cmd>Spotify<CR>")
   keymap.map(
     "n",
     "<C-p>",

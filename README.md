@@ -29,6 +29,25 @@ mise install
 npm ci
 ```
 
+### Spotify (`smm.nvim`)
+
+This config includes [`iamt4nk/smm.nvim`](https://github.com/iamt4nk/smm.nvim) and reads its credentials from environment variables instead of hardcoding them.
+
+1. Create a Spotify app at <https://developer.spotify.com/dashboard>.
+2. Add yourself in the app's `User Management`.
+3. Add a redirect URI such as `http://127.0.0.1:8888`.
+4. Copy `.env.example` to `.env`.
+5. Fill in these variables:
+
+```dotenv
+SPOTIFY_CLIENT_ID=your-client-id
+SPOTIFY_CALLBACK_URL=http://127.0.0.1
+SPOTIFY_CALLBACK_PORT=8888
+SPOTIFY_PREMIUM=true
+```
+
+This config loads `.env` automatically during startup. Then run `:Spotify` or use `<leader>ms` to start the OAuth flow and open the playback window.
+
 ## Commands
 
 ```bash
@@ -97,6 +116,7 @@ nvim --headless +qa
 | --- | --- | --- |
 | `<leader>e` | normal | Open `oil.nvim` in the current directory. |
 | `<leader><leader>` | normal | Find files with Telescope. |
+| `<leader>ms` | normal | Open `smm.nvim` / Spotify playback. |
 | `<C-p>` | normal | Open recent buffers with Telescope. |
 | `<leader>g` | normal | Run live grep with Telescope. |
 | `<Esc>` | normal | Clear search highlight and keep escape behavior. |
@@ -120,7 +140,7 @@ nvim --headless +qa
 ## Performance
 
 - Startup benchmark (`nvim --startuptime`, 5 runs): `17.20 ms` min, `21.47 ms` avg, `30.78 ms` max.
-- Plugin count: `28`
+- Plugin count: `29`
 - Loaded during measured session: `21`
 - Benchmark logs can be generated locally with:
 
@@ -150,6 +170,7 @@ nvim --startuptime startup.log +qa
 | [nvim-notify](https://github.com/rcarriga/nvim-notify) | Better notification UI. |
 | [oil.nvim](https://github.com/stevearc/oil.nvim) | File explorer as an editable buffer. |
 | [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Better Markdown rendering. |
+| [smm.nvim](https://github.com/iamt4nk/smm.nvim) | Spotify playback manager and controller. |
 | [smear-cursor.nvim](https://github.com/sphamba/smear-cursor.nvim) | Cursor trail animation. |
 | [tabby.nvim](https://github.com/nanozuki/tabby.nvim) | Custom tabline. |
 | [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for files, buffers, and grep. |
