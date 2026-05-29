@@ -13,7 +13,7 @@
     "url": "git+https://github.com/cayasde/nvim.git"
   },
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/cayasde/nvim/issues"
