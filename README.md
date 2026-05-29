@@ -5,7 +5,7 @@
 [![Size](https://img.shields.io/github/repo-size/cayasde/nvim?label=SIZE&logo=codesandbox&style=for-the-badge)](https://github.com/cayasde/nvim)
 [![Last Commit](https://img.shields.io/github/last-commit/cayasde/nvim?label=LAST%20COMMIT&style=for-the-badge)](https://github.com/cayasde/nvim/commits/main)
 
-Lua-first Neovim configuration with fast startup, plugin-per-file organization, and a small toolchain built around `mise`, `stylua`, and CI validation.
+Neovim configuration with fast startup, plugin-per-file organization, and a small toolchain built around `mise`, `stylua`, and CI validation.
 
 ## Tooling
 
