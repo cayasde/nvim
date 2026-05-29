@@ -1,0 +1,28 @@
+{
+  "name": "nvim",
+  "version": "1.0.0",
+  "description": "Neovim configuration",
+  "scripts": {
+    "format:lua": "mise exec stylua -- stylua init.lua lua",
+    "prepare": "husky",
+    "precommit:lua": "npm run format:lua && lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cayasde/nvim.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cayasde/nvim/issues"
+  },
+  "homepage": "https://github.com/cayasde/nvim#readme",
+  "lint-staged": {
+    "*.lua": "mise exec stylua -- stylua"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5"
+  }
+}
