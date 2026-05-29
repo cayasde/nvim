@@ -1,9 +1,11 @@
 vim.env.POWERSHELL_UPDATECHECK = "Off"
 
-local Terminal = require("toggleterm.terminal").Terminal
-local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local M = {}
+
 local shell_command = vim.fn.executable("pwsh") == 1 and "pwsh -NoLogo" or vim.o.shell
+
+local terminals = {}
+local last_terminal
 
 local function clean_terminal_name(value)
   if not value or value == "" then
@@ -20,48 +22,10 @@ end
 
 local shell_name = clean_terminal_name(shell_command) or vim.fn.fnamemodify(vim.o.shell, ":t")
 
-require("toggleterm").setup({
-  direction = "float",
-  shell = shell_command,
-  start_in_insert = true,
-  insert_mappings = true,
-  float_opts = {
-    border = "rounded",
-  },
-})
-
-local terminals = {}
-local last_terminal
-
 local function send_ctrl_w_to_terminal(terminal)
   if terminal and terminal.job_id then
     vim.api.nvim_chan_send(terminal.job_id, "\x17")
   end
-end
-
-local function create_terminal()
-  local terminal = Terminal:new({
-    direction = "float",
-    hidden = true,
-    on_open = function(term)
-      vim.schedule(function()
-        local term_opts = { buffer = term.bufnr, silent = true, noremap = true }
-        map("t", "<C-BS>", function()
-          send_ctrl_w_to_terminal(term)
-        end, term_opts)
-        map("t", "<C-h>", function()
-          send_ctrl_w_to_terminal(term)
-        end, term_opts)
-        map("t", "<C-w>", function()
-          send_ctrl_w_to_terminal(term)
-        end, term_opts)
-        vim.cmd("startinsert!")
-      end)
-    end,
-  })
-
-  table.insert(terminals, terminal)
-  return terminal
 end
 
 local function process_name_from_pid(pid)
@@ -127,17 +91,30 @@ local function terminal_picker_label(terminal, index)
   return string.format("%s: %s", id, terminal_process_name(terminal))
 end
 
-local function toggle_last_terminal()
-  if not last_terminal then
-    last_terminal = create_terminal()
-  end
+local function create_terminal()
+  local Terminal = require("toggleterm.terminal").Terminal
+  local terminal = Terminal:new({
+    direction = "float",
+    hidden = true,
+    on_open = function(term)
+      vim.schedule(function()
+        local term_opts = { buffer = term.bufnr, silent = true, noremap = true }
+        vim.keymap.set("t", "<C-BS>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
+        vim.keymap.set("t", "<C-h>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
+        vim.keymap.set("t", "<C-w>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
+        vim.cmd("startinsert!")
+      end)
+    end,
+  })
 
-  last_terminal:toggle()
-end
-
-local function new_terminal()
-  last_terminal = create_terminal()
-  last_terminal:toggle()
+  table.insert(terminals, terminal)
+  return terminal
 end
 
 local function remove_terminal(terminal)
@@ -155,9 +132,34 @@ local function remove_terminal(terminal)
   terminal:shutdown()
 end
 
-local function select_terminal()
+function M.setup()
+  require("toggleterm").setup({
+    direction = "float",
+    shell = shell_command,
+    start_in_insert = true,
+    insert_mappings = true,
+    float_opts = {
+      border = "rounded",
+    },
+  })
+end
+
+function M.toggle_last()
+  if not last_terminal then
+    last_terminal = create_terminal()
+  end
+
+  last_terminal:toggle()
+end
+
+function M.new()
+  last_terminal = create_terminal()
+  last_terminal:toggle()
+end
+
+function M.select()
   if #terminals == 0 then
-    new_terminal()
+    M.new()
     return
   end
 
@@ -210,7 +212,7 @@ local function select_terminal()
           actions.close(prompt_bufnr)
 
           if #terminals > 0 then
-            select_terminal()
+            M.select()
           end
         end
 
@@ -239,15 +241,10 @@ local function select_terminal()
     :find()
 end
 
-local function close_last_terminal()
+function M.close_last()
   if last_terminal then
     last_terminal:close()
   end
 end
 
-for _, lhs in ipairs({ "<C-\\>", "<C-`>", "<Nul>", "<C-Space>", "<C-@>" }) do
-  map({ "n", "t" }, lhs, toggle_last_terminal, opts)
-end
-map("n", "<leader>tn", new_terminal, opts)
-map("n", "<leader>ts", select_terminal, opts)
-map("n", "<leader>tk", close_last_terminal, opts)
+return M
