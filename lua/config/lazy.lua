@@ -24,6 +24,19 @@ require("lazy").setup({
     end,
   },
   {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    priority = 900,
+    config = function()
+      require("transparent").setup({
+        extra_groups = {},
+        exclude_groups = {},
+      })
+
+      vim.cmd("TransparentEnable")
+    end,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
