@@ -4,6 +4,7 @@
   "description": "Neovim configuration",
   "scripts": {
     "format:lua": "mise exec stylua -- stylua init.lua lua",
+    "format:lua:check": "mise exec stylua -- stylua --check init.lua lua",
     "prepare": "husky",
     "precommit:lua": "npm run format:lua && lint-staged"
   },
