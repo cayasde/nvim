@@ -92,7 +92,12 @@ map("x", "<C-s>", "<Esc><cmd>w<CR>", opts)
 
 map("n", "<leader>e", "<cmd>Oil .<CR>", opts)
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", opts)
-map("n", "<C-p>", "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true previewer=false<CR>", opts)
+map(
+  "n",
+  "<C-p>",
+  "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true previewer=false<CR>",
+  opts
+)
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
 map("n", "<leader>v", "<cmd>vsplit<CR>", opts)
 map("n", "<leader>h", "<cmd>split<CR>", opts)
@@ -113,7 +118,7 @@ map("i", "<C-S-Down>", "<C-o>vgj", opts)
 map("i", "<C-BS>", delete_code_chunk_backward, opts)
 map("i", "<C-h>", delete_code_chunk_backward, opts)
 map("i", "<C-w>", delete_code_chunk_backward, opts)
-map("i", "<C-v>", '<C-r>+', opts)
+map("i", "<C-v>", "<C-r>+", opts)
 map("i", "<C-z>", "<C-o>u", opts)
 map("i", "<C-y>", "<C-o><C-r>", opts)
 

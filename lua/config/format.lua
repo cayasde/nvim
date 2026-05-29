@@ -1,7 +1,6 @@
 local group = vim.api.nvim_create_augroup("codex_format_on_save", { clear = true })
 
 local mason_bin = vim.fn.stdpath("data") .. "/mason/bin/"
-local stylua = mason_bin .. "stylua.cmd"
 local prettierd = mason_bin .. "prettierd.cmd"
 local prettier = mason_bin .. "prettier.cmd"
 
@@ -15,14 +14,14 @@ end
 
 local formatters = {
   lua = {
-    exe = stylua,
+    exes = { "stylua", mason_bin .. "stylua.cmd" },
     name = "stylua",
     args = function(bufname)
       return stdin_filepath_args(bufname, true)
     end,
   },
   luau = {
-    exe = stylua,
+    exes = { "stylua", mason_bin .. "stylua.cmd" },
     name = "stylua",
     args = function(bufname)
       return stdin_filepath_args(bufname, true)
@@ -91,7 +90,10 @@ local function format_buffer(args)
 
   local result = vim.system(command, { stdin = text, text = true }):wait()
   if result.code ~= 0 or not result.stdout then
-    vim.notify((result.stderr and result.stderr ~= "") and result.stderr or (formatter.name .. " failed"), vim.log.levels.ERROR)
+    vim.notify(
+      (result.stderr and result.stderr ~= "") and result.stderr or (formatter.name .. " failed"),
+      vim.log.levels.ERROR
+    )
     return
   end
 

@@ -182,44 +182,61 @@ local function select_terminal()
     })
   end
 
-  pickers.new({}, {
-    prompt_title = "Terminals",
-    finder = finders.new_table({
-      results = entries,
-      entry_maker = function(entry)
-        return entry
+  pickers
+    .new({}, {
+      prompt_title = "Terminals",
+      finder = finders.new_table({
+        results = entries,
+        entry_maker = function(entry)
+          return entry
+        end,
+      }),
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+          last_terminal = selection.value
+          last_terminal:toggle()
+        end)
+
+        local function delete_selected_terminal()
+          local selection = action_state.get_selected_entry()
+          if not selection then
+            return
+          end
+
+          remove_terminal(selection.value)
+          actions.close(prompt_bufnr)
+
+          if #terminals > 0 then
+            select_terminal()
+          end
+        end
+
+        vim.keymap.set(
+          "i",
+          "<C-d>",
+          delete_selected_terminal,
+          { buffer = prompt_bufnr, silent = true }
+        )
+        vim.keymap.set(
+          "n",
+          "<C-d>",
+          delete_selected_terminal,
+          { buffer = prompt_bufnr, silent = true }
+        )
+        vim.keymap.set(
+          "n",
+          "dd",
+          delete_selected_terminal,
+          { buffer = prompt_bufnr, silent = true }
+        )
+
+        return true
       end,
-    }),
-    sorter = conf.generic_sorter({}),
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        local selection = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        last_terminal = selection.value
-        last_terminal:toggle()
-      end)
-
-      local function delete_selected_terminal()
-        local selection = action_state.get_selected_entry()
-        if not selection then
-          return
-        end
-
-        remove_terminal(selection.value)
-        actions.close(prompt_bufnr)
-
-        if #terminals > 0 then
-          select_terminal()
-        end
-      end
-
-      vim.keymap.set("i", "<C-d>", delete_selected_terminal, { buffer = prompt_bufnr, silent = true })
-      vim.keymap.set("n", "<C-d>", delete_selected_terminal, { buffer = prompt_bufnr, silent = true })
-      vim.keymap.set("n", "dd", delete_selected_terminal, { buffer = prompt_bufnr, silent = true })
-
-      return true
-    end,
-  }):find()
+    })
+    :find()
 end
 
 local function close_last_terminal()
