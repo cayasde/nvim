@@ -34,6 +34,17 @@ npm run format:lua:check
 nvim --headless +qa
 ```
 
+## Performance
+
+- Startup benchmark (`nvim --startuptime`, 5 runs): `17.20 ms` min, `21.47 ms` avg, `30.78 ms` max.
+- Plugin count: `28`
+- Loaded during measured session: `21`
+- Benchmark logs can be generated locally with:
+
+```bash
+nvim --startuptime startup.log +qa
+```
+
 ## Plugins
 
 | Plugin | Description |
