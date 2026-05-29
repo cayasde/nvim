@@ -37,6 +37,86 @@ npm run format:lua:check
 nvim --headless +qa
 ```
 
+## Keymaps
+
+<details>
+<summary>Navigation</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<Left>` / `<Down>` / `<Up>` / `<Right>` | normal, visual | Use `h`, `gj`, `gk`, `l` style movement. |
+| `<Home>` / `<End>` | normal, visual | Jump to first non-blank char or end of line. |
+| `<C-Left>` / `<C-Right>` | normal, visual, insert | Move by word. |
+| `<C-S-Left>` / `<C-S-Right>` | normal, visual, insert | Select or extend by word. |
+| `<C-S-Up>` / `<C-S-Down>` | normal, visual, insert | Select or extend by display line. |
+
+</details>
+
+<details>
+<summary>Editing</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<C-BS>` / `<C-h>` | insert | Delete the previous code chunk, not just a plain word. |
+| `<C-w>` | insert | Uses the same code-aware backward delete behavior. |
+| `<C-BS>` / `<C-h>` | normal, visual | Delete the previous selection chunk backward. |
+| `<BS>` | visual | Delete selection into the black hole register. |
+
+</details>
+
+<details>
+<summary>Clipboard And Save</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<C-x>` | normal, visual | Cut to system clipboard. |
+| `<C-c>` | normal, visual | Copy to system clipboard. |
+| `<C-v>` | normal, visual | Paste from system clipboard. |
+| `<C-z>` / `<C-y>` | normal, visual | Undo / redo. |
+| `<C-s>` | normal, visual, insert | Save current buffer. |
+| `<C-a>` | normal, insert | Select the entire buffer. |
+
+</details>
+
+<details>
+<summary>Window Management</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<C-q>` | normal | Close current buffer. |
+| `<leader>v` / `<leader>h` | normal | Vertical split / horizontal split. |
+| `<leader>q` / `<leader>o` | normal | Close current window / keep only current window. |
+| `<leader><Left>` / `<leader><Down>` / `<leader><Up>` / `<leader><Right>` | normal | Move across windows. |
+
+</details>
+
+<details>
+<summary>UI And Search</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<leader>e` | normal | Open `oil.nvim` in the current directory. |
+| `<leader><leader>` | normal | Find files with Telescope. |
+| `<C-p>` | normal | Open recent buffers with Telescope. |
+| `<leader>g` | normal | Run live grep with Telescope. |
+| `<Esc>` | normal | Clear search highlight and keep escape behavior. |
+| `<Esc>` | insert, visual, select, operator-pending | Keep plain escape behavior explicit. |
+
+</details>
+
+<details>
+<summary>Terminal</summary>
+
+| Key | Mode | Action |
+| --- | --- | --- |
+| `<Esc>` | terminal | Leave terminal mode. |
+| `<C-\>` / `Ctrl+\`` / `<Nul>` / `<C-Space>` / `<C-@>` | normal, terminal | Toggle the last floating terminal. |
+| `<leader>tn` | normal | Create a new floating terminal. |
+| `<leader>ts` | normal | Pick an existing terminal from the Telescope selector. |
+| `<leader>tk` | normal | Close the last terminal. |
+
+</details>
+
 ## Performance
 
 - Startup benchmark (`nvim --startuptime`, 5 runs): `17.20 ms` min, `21.47 ms` avg, `30.78 ms` max.
