@@ -38,36 +38,30 @@ nvim --headless +qa
 
 | Plugin | Description |
 | --- | --- |
-| [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) | GitHub-themed colorscheme. |
-| [transparent.nvim](https://github.com/xiyaowong/transparent.nvim) | Transparent editor background. |
-| [colorful-winsep.nvim](https://github.com/nvim-zh/colorful-winsep.nvim) | Animated colored window separators. |
-| [tiny-inline-diagnostic.nvim](https://github.com/rachartier/tiny-inline-diagnostic.nvim) | Compact inline diagnostics. |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for files, buffers, and grep. |
-| [flash.nvim](https://github.com/folke/flash.nvim) | Fast in-buffer motion and jump UI. |
-| [smear-cursor.nvim](https://github.com/sphamba/smear-cursor.nvim) | Cursor trail animation. |
-| [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) | Smooth scrolling. |
-| [nvim-notify](https://github.com/rcarriga/nvim-notify) | Better notification UI. |
-| [noice.nvim](https://github.com/folke/noice.nvim) | Improved command line, messages, and popup UI. |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline. |
 | [blink.cmp](https://github.com/Saghen/blink.cmp) | Completion engine. |
-| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Better Lua dev experience for Neovim config. |
-| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-closes brackets and quotes. |
-| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides. |
+| [colorful-winsep.nvim](https://github.com/nvim-zh/colorful-winsep.nvim) | Animated colored window separators. |
+| [flash.nvim](https://github.com/folke/flash.nvim) | Fast in-buffer motion and jump UI. |
+| [github-nvim-theme](https://github.com/projekt0n/github-nvim-theme) | GitHub-themed colorscheme. |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git hunks in the sign column. |
-| [oil.nvim](https://github.com/stevearc/oil.nvim) | File explorer as an editable buffer. |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Floating terminal management. |
-| [tabby.nvim](https://github.com/nanozuki/tabby.nvim) | Custom tabline. |
-| [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Better Markdown rendering. |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP server configuration. |
-| [mason.nvim](https://github.com/mason-org/mason.nvim) | External tool and LSP installer. |
-| [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) | Bridges Mason with `lspconfig`. |
+| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides. |
+| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Better Lua dev experience for Neovim config. |
+| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Statusline. |
 | [luau-lsp.nvim](https://github.com/lopi-py/luau-lsp.nvim) | Luau and Roblox LSP integration. |
-
-## Notes
-
-- `mise` manages the project toolchain.
-- `husky` and `lint-staged` run Lua formatting in `pre-commit`.
-- GitHub Actions validates formatting and Neovim bootstrap on push and pull request.
+| [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) | Bridges Mason with `lspconfig`. |
+| [mason.nvim](https://github.com/mason-org/mason.nvim) | External tool and LSP installer. |
+| [neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) | Smooth scrolling. |
+| [noice.nvim](https://github.com/folke/noice.nvim) | Improved command line, messages, and popup UI. |
+| [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto-closes brackets and quotes. |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP server configuration. |
+| [nvim-notify](https://github.com/rcarriga/nvim-notify) | Better notification UI. |
+| [oil.nvim](https://github.com/stevearc/oil.nvim) | File explorer as an editable buffer. |
+| [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Better Markdown rendering. |
+| [smear-cursor.nvim](https://github.com/sphamba/smear-cursor.nvim) | Cursor trail animation. |
+| [tabby.nvim](https://github.com/nanozuki/tabby.nvim) | Custom tabline. |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for files, buffers, and grep. |
+| [tiny-inline-diagnostic.nvim](https://github.com/rachartier/tiny-inline-diagnostic.nvim) | Compact inline diagnostics. |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | Floating terminal management. |
+| [transparent.nvim](https://github.com/xiyaowong/transparent.nvim) | Transparent editor background. |
 
 ## License
 
