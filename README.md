@@ -1,7 +1,7 @@
-# nvim
+# Nvim
 
 [![CI](https://img.shields.io/github/actions/workflow/status/cayasde/nvim/ci.yml?branch=main&label=CI&style=for-the-badge)](https://github.com/cayasde/nvim/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/cayasde/nvim?label=LICENSE&style=for-the-badge)](./LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-2ea44f?style=for-the-badge)](./LICENSE)
 [![Size](https://img.shields.io/github/repo-size/cayasde/nvim?label=SIZE&logo=codesandbox&style=for-the-badge)](https://github.com/cayasde/nvim)
 [![Last Commit](https://img.shields.io/github/last-commit/cayasde/nvim?label=LAST%20COMMIT&style=for-the-badge)](https://github.com/cayasde/nvim/commits/main)
 
