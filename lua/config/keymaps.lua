@@ -17,6 +17,44 @@ vim.opt.whichwrap:append("<,>,[,]")
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
+local function delete_code_chunk_backward()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  if col == 0 then
+    return
+  end
+
+  local line = vim.api.nvim_get_current_line()
+  local before = line:sub(1, col)
+  local after = line:sub(col + 1)
+  local start_col
+
+  for _, pattern in ipairs({
+    "%s+$",
+    "[%a_][%w_]*$",
+    "0[xX][%da-fA-F]+$",
+    "%d+%.?%d*$",
+    "[%]%)}]+$",
+    "[%[%({]+$",
+    "[\"'`]+$",
+    "[%.:,;]+$",
+    "[%+%-%*%/%=<>!&|%^~?]+$",
+    "[^%s%w_]+$",
+  }) do
+    local match_start = before:find(pattern)
+    if match_start then
+      start_col = match_start
+      break
+    end
+  end
+
+  if not start_col then
+    start_col = col
+  end
+
+  vim.api.nvim_set_current_line(before:sub(1, start_col - 1) .. after)
+  vim.api.nvim_win_set_cursor(0, { row, start_col - 1 })
+end
+
 map({ "n", "x" }, "<Left>", "h", opts)
 map({ "n", "x" }, "<Down>", "gj", opts)
 map({ "n", "x" }, "<Up>", "gk", opts)
@@ -73,8 +111,9 @@ map("i", "<C-S-Left>", "<C-o>vb", opts)
 map("i", "<C-S-Right>", "<C-o>vw", opts)
 map("i", "<C-S-Up>", "<C-o>vgk", opts)
 map("i", "<C-S-Down>", "<C-o>vgj", opts)
-map("i", "<C-BS>", "<C-w>", opts)
-map("i", "<C-h>", "<C-w>", opts)
+map("i", "<C-BS>", delete_code_chunk_backward, opts)
+map("i", "<C-h>", delete_code_chunk_backward, opts)
+map("i", "<C-w>", delete_code_chunk_backward, opts)
 map("i", "<C-v>", '<C-r>+', opts)
 map("i", "<C-z>", "<C-o>u", opts)
 map("i", "<C-y>", "<C-o><C-r>", opts)

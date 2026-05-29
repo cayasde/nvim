@@ -33,12 +33,28 @@ require("toggleterm").setup({
 local terminals = {}
 local last_terminal
 
+local function send_ctrl_w_to_terminal(terminal)
+  if terminal and terminal.job_id then
+    vim.api.nvim_chan_send(terminal.job_id, "\x17")
+  end
+end
+
 local function create_terminal()
   local terminal = Terminal:new({
     direction = "float",
     hidden = true,
-    on_open = function()
+    on_open = function(term)
       vim.schedule(function()
+        local term_opts = { buffer = term.bufnr, silent = true, noremap = true }
+        map("t", "<C-BS>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
+        map("t", "<C-h>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
+        map("t", "<C-w>", function()
+          send_ctrl_w_to_terminal(term)
+        end, term_opts)
         vim.cmd("startinsert!")
       end)
     end,
@@ -215,6 +231,6 @@ end
 for _, lhs in ipairs({ "<C-\\>", "<C-`>", "<Nul>", "<C-Space>", "<C-@>" }) do
   map({ "n", "t" }, lhs, toggle_last_terminal, opts)
 end
-map({ "n", "t" }, "<leader>tn", new_terminal, opts)
-map({ "n", "t" }, "<leader>ts", select_terminal, opts)
-map({ "n", "t" }, "<leader>tk", close_last_terminal, opts)
+map("n", "<leader>tn", new_terminal, opts)
+map("n", "<leader>ts", select_terminal, opts)
+map("n", "<leader>tk", close_last_terminal, opts)
