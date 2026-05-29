@@ -397,12 +397,6 @@ require("lazy").setup({
     version = "*",
   },
   {
-    "kdheepak/lazygit.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-  {
     "nanozuki/tabby.nvim",
     lazy = false,
     dependencies = {

@@ -91,7 +91,6 @@ map("i", "<C-a>", "<Esc>ggVG", opts)
 map("x", "<C-s>", "<Esc><cmd>w<CR>", opts)
 
 map("n", "<leader>e", "<cmd>Oil .<CR>", opts)
-map("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 map("n", "<leader><leader>", "<cmd>Telescope find_files<CR>", opts)
 map("n", "<C-p>", "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true previewer=false<CR>", opts)
 map("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
@@ -121,15 +120,6 @@ map("i", "<C-y>", "<C-o><C-r>", opts)
 map({ "i", "v", "s", "o" }, "<Esc>", "<Esc>", opts)
 map("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", opts)
 map("t", "<Esc>", [[<C-\><C-n>]], opts)
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lazygit",
-  callback = function(args)
-    local lazygit_opts = { noremap = true, silent = true, buffer = args.buf }
-    map("n", "<Esc>", "<cmd>close<CR>", lazygit_opts)
-    map("t", "<Esc>", [[<C-\><C-n><cmd>close<CR>]], lazygit_opts)
-  end,
-})
 
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
